@@ -3,13 +3,6 @@ const socket = io()
 
 socket.on('connect', () => {
   console.log('Connected to server')
-
-  // fires an event to the server
-  // and the server sends it to everyone else
-  socket.emit('createMessage', {
-    to: 'someone@example.com',
-    text: 'Whatupppppp'
-  })
 })
 
 socket.on('disconnect', () => {
