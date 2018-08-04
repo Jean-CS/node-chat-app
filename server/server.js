@@ -22,21 +22,16 @@ io.on('connection', (socket) => {
   socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'))
 
   socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'))
-  
+
   // listens for an event
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     console.log('Creating message', message);
 
 
     // emits an event to ALL CONNECTIONS
     io.emit('newMessage', generateMessage(message.from, message.text))
 
-    // // emits even to all connections EXCEPT THIS CONNECTION(socket)
-    // socket.broadcast.emit('newMessage', {
-    //   from: message.from,
-    //   text: message.text,
-    //   createdAt: new Date()
-    // })
+    callback('This is from the server')
   })
 
   socket.on('disconnect', () => {
