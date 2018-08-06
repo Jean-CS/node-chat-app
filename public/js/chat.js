@@ -78,7 +78,6 @@ $('#form-message').on('submit', function (e) {
   const messageElement = $(this).find('[name=message]')
 
   socket.emit('createMessage', {
-    from: 'User',
     text: messageElement.val()
   }, function () {
     messageElement.val('').focus()
